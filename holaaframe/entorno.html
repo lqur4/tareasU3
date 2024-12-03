@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entorno</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+    <a-scene>
+    <a-entity geometry="primitive: torusKnot; p: 3; q:7" position="0 1.5 -4" material="color:#dc5836" rotation="0 0 0" scale="1 1 1"></a-entity>
+    <a-entity geometry="primitive: box; width: 1; height: 2; depth: 1" position="3 1.5 -5" material="color:#8a3e3e"></a-entity> 
+    <a-entity geometry="primitive: dodecahedron; radius: 2" position="-4.5 1.5 -4" material="color:#8a3e3e"></a-entity>
+    <a-entity environment="preset: forest; dressingAmount: 60; horizonColor: white; skyType: gradient; skyColor: #f6e5c0; groundColor: brown; groundColor2: #fcd1b0; dressingColor:#ef5439; playArea:3; material:red; color: red"></a-entity>
+    <a-text value="Bienvenide" font="assets/Chunky Retro-Demo-msdf.json" font-image="assets/ChunkyRetro-Demo.png" negate="false" color="#e3b07a" scale="3 3 2" position="-1.5 5 -1" shader="red" ></a-text>
+    <a-camera position="0 3 6"></a-camera>
+    </a-scene>
+</body>
+</html>
