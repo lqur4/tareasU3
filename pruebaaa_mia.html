@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No se q hacer</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('play-video', {
+            schema: {
+                target: { type: 'selector' }
+            },
+            init: function () {
+                var myVideo = this.data.target;
+                this.el.addEventListener('click', function () {
+                    if (myVideo && myVideo.paused) {
+                        myVideo.play();
+                    }
+                });
+            }
+        });
+
+        AFRAME.registerComponent('pause-video', {
+            schema: {
+                target: { type: 'selector' }
+            },
+            init: function () {
+                var myVideo = this.data.target;
+                this.el.addEventListener('click', function () {
+                    if (myVideo && !myVideo.paused) {
+                        myVideo.pause();
+                    }
+                });
+            }
+        });
+
+        AFRAME.registerComponent('pause-sound', {
+            schema: {
+                target: { type: 'selector' }
+            },
+            init: function () {
+                var soundEntity = this.data.target;
+                this.el.addEventListener('click', function () {
+                    if (soundEntity.components.sound) {
+                        soundEntity.components.sound.pauseSound();
+                    }
+                });
+            }
+        });
+
+        AFRAME.registerComponent('play-sound', {
+            schema: {
+                target: { type: 'selector' }
+            },
+            init: function () {
+                var soundEntity = this.data.target;
+                this.el.addEventListener('click', function () {
+                    if (soundEntity.components.sound) {
+                        soundEntity.components.sound.playSound();
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene background="color: pink">
+        <a-assets>
+            <img id="play" src="assets/play.png">
+            <img id="pause" src="assets/pause.png">
+            <video id="videito" loop="true" src="assets/nomi.mp4"></video>
+            <video id="novios" loop="true" src="assets/nomin1.mp4"></video>
+        </a-assets>
+
+        <a-camera position="0 1.6 0">
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        <a-entity geometry="primitive: box; height: 3.3; width: 2.3; depth: 0.1" material="src:assets\orna_blanco.jpg" position="0 1.5 -2.088"></a-entity>
+        <a-entity geometry="primitive: box; height: 3.5; width: 2.5; depth: 0.1" material="src:assets\horna_rosaclaro.jpg" position="-4 1.5 -2.088"></a-entity>
+        <a-entity geometry="primitive: box; height: 5; width: 2; depth: 0.1" material="src:assets\Collage_origen.png; light="type: point" position="4 1.5 -2.088"></a-entity>
+        <a-entity geometry="primitive: circle; radius: 2" position="0 0 0" rotation="-90 0 0" material="src:assets\piedra.jpg ; side: double"></a-entity>
+        <a-entity geometry="primitive: circle; radius: 1.2" position="0 0.1 0" rotation="-90 0 0" material="src:assets\pasto.jpg ; side: double"></a-entity>
+        
+        <a-entity>
+            <a-image height="2" width="3" position="-10 1.5 -2" src="Obras\bhm1.jpg"></a-image>
+            <a-box height="2.5" width="3.5" depth="0.1" src="assets\horna_rosaclaro1.jpg" position="-10 1.5 -2.088"></a-box>
+        </a-entity>
+
+        <a-entity id="river" geometry="primitive: plane" material="color: blue" position="0 10 0" sound="src: assets\Teflon Sega - Fornever.mp3; autoplay: false"></a-entity>
+
+        <!-- Botones para controlar el sonido -->
+        <a-image id="playSoundButton" src="#play" position="-9.5 1 0" width="0.5" height="0.5" 
+                 play-sound="target: #river"></a-image>
+        <a-image id="pauseSoundButton" src="#pause" position="-10.5 1 0" width="0.5" height="0.5" 
+                 pause-sound="target: #river"></a-image>
+
+        <!-- Primer video con sus botones -->
+        <a-video src="#videito" position="0 1.5 -2" width="1" height="1.5" scale="2 2 2"></a-video>
+        <a-image id="playButton1" src="#play" position="-1.3 0.5 -2" width="0.3" height="0.3" 
+                 play-video="target: #videito"></a-image>
+        <a-image id="pauseButton1" src="#pause" position="1.3 0.5 -2" width="0.3" height="0.3" 
+                 pause-video="target: #videito"></a-image>
+
+        <!-- Segundo video con sus botones -->
+        <a-video src="#novios" position="-4 1.5 -2" width="1" height="1.5" scale="2 2 2"></a-video>
+        <a-image id="playButton2" src="#play" position="-5.3 0.5 -2" width="0.3" height="0.3" 
+                 play-video="target: #novios"></a-image>
+        <a-image id="pauseButton2" src="#pause" position="-2.5 0.5 -2" width="0.3" height="0.3" 
+                 pause-video="target: #novios"></a-image>
+
+        <!-- Anillo -->
+        <a-entity geometry="primitive: ring; radiusInner: 2; radiusOuter: 5" 
+            position="0 0 0" 
+            rotation="-90 0 0" 
+            material="color: #00FF00; side: double">
+        </a-entity>
+    </a-scene>
+</body>
+</html>
